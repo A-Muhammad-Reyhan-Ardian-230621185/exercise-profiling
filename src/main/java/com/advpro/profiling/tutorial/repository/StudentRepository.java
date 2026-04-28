@@ -14,4 +14,7 @@ import java.util.Optional;
 public interface StudentRepository extends JpaRepository<Student, Long> {
     @Query("SELECT s FROM Student s ORDER BY s.gpa DESC LIMIT 1")
     Optional<Student> findStudentWithHighestGpa();
+
+    @Query(nativeQuery = true, value = "SELECT GROUP_CONCAT(name, ', ') FROM student")
+    String findAllStudentNamesJoined();
 }
