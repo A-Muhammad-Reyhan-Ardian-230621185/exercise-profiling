@@ -15,6 +15,6 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     @Query("SELECT s FROM Student s ORDER BY s.gpa DESC LIMIT 1")
     Optional<Student> findStudentWithHighestGpa();
 
-    @Query(nativeQuery = true, value = "SELECT GROUP_CONCAT(name, ', ') FROM student")
+    @Query(nativeQuery = true, value = "SELECT STRING_AGG(name, ', ') FROM students")
     String findAllStudentNamesJoined();
 }
